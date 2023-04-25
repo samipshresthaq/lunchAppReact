@@ -1,9 +1,11 @@
 import { useState } from "react";
 
 import ListGroup from "./components/ListGroup";
-import AlertComponent from "./components/alert";
+import AlertComponent from "./components/Alert";
+import Button from "@mui/material/Button";
 
 import "./App.css";
+import DrawerMenu from "./components/DrawerMenu/DrawerMenu";
 
 function App() {
   const items = ["Pizza", "Burger", "Pasta", "Salad", "Sandwich"];
@@ -17,14 +19,16 @@ function App() {
   return (
     <div>
       <ListGroup items={items} heading="Lunch Menu" onSelected={onSelected} />
-      <AlertComponent
+      {showAlert && <AlertComponent
         show={showAlert}
-        type="info"
-        close={(visibility) => setShow(visibility)}
+        type="success"
+        close={() => setShow(false)}
       >
-        <h6>Simple Alert</h6>
-      </AlertComponent>
-      <button onClick={() => setShow(true)}>Show Alert</button>
+        Simple Alert
+      </AlertComponent>}
+
+      <Button variant="outlined" onClick={() => setShow(true)}>Alert Me</Button>
+      <DrawerMenu></DrawerMenu>
     </div>
   );
 }
