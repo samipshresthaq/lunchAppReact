@@ -1,30 +1,27 @@
-import React, { Fragment, useState } from "react";
+import React from "react";
 import {
   Box,
   CSSObject,
-  Divider,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Theme,
   Toolbar,
   Typography,
   styled,
-  useTheme,
 } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
+}
+
+interface DrawerMenuProps {
+  menuList: React.ReactNode;
+  drawerState: boolean;
+  setDrawerState: (state: boolean) => void;
+  children?: React.ReactNode;
 }
 
 const drawerWidth = 240;
@@ -52,20 +49,8 @@ const closedMixin = (theme: Theme): CSSObject => ({
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }) => ({
+})<AppBarProps>(({ theme }) => ({
   zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
 }));
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -94,9 +79,8 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-const DrawerMenu = (props: { children?: React.ReactNode }) => {
-  const theme = useTheme();
-  const [drawerState, setDrawerState] = useState(false);
+const DrawerMenu = (props: DrawerMenuProps) => {
+  const { menuList, children, drawerState, setDrawerState } = props;
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -108,69 +92,8 @@ const DrawerMenu = (props: { children?: React.ReactNode }) => {
         return;
       }
 
-      setDrawerState(open);
+      setDrawerState(!open);
     };
-
-  // Todo: Remove this list and use MenuList component
-  const list = () => (
-    <>
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: drawerState ? "initial" : "center",
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: drawerState ? 3 : "auto",
-                  justifyContent: "center",
-                }}
-              >
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText
-                primary={text}
-                sx={{ opacity: drawerState ? 1 : 0 }}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding sx={{ display: "block" }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: drawerState ? "initial" : "center",
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: drawerState ? 3 : "auto",
-                  justifyContent: "center",
-                }}
-              >
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText
-                primary={text}
-                sx={{ opacity: drawerState ? 1 : 0 }}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </>
-  );
 
   // Todo: Try to create seperate AppBar component
   return (
@@ -180,14 +103,13 @@ const DrawerMenu = (props: { children?: React.ReactNode }) => {
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={toggleDrawer(true)}
+            onClick={toggleDrawer(drawerState)}
             edge="start"
             sx={{
               marginRight: 5,
-              ...(drawerState && { display: "none" }),
             }}
           >
-            <MenuIcon />
+            {drawerState ? <MenuIcon /> : <CloseIcon />}
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             Mini variant drawer - This title should be dynamic
@@ -195,22 +117,15 @@ const DrawerMenu = (props: { children?: React.ReactNode }) => {
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={drawerState}>
-        <DrawerHeader>
-          <IconButton onClick={toggleDrawer(false)}>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
+        <Toolbar />
 
-        {list()}
+        {menuList}
       </Drawer>
+
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
 
-        {props.children}
+        {children}
       </Box>
     </Box>
   );
