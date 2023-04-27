@@ -10,6 +10,7 @@ interface AppBarProps extends MuiAppBarProps {
 
 interface DrawerMenuProps {
   menuList: React.ReactNode;
+  themeIcon: React.ReactNode;
   pageTitle: string;
   children?: React.ReactNode;
 }
@@ -51,9 +52,11 @@ const DrawerMenu = (props: DrawerMenuProps) => {
         sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
       >
         <Toolbar>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             {pageTitle}
           </Typography>
+
+          {props.themeIcon}
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent">
