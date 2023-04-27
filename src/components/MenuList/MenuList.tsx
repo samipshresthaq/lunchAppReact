@@ -10,23 +10,16 @@ import {
 import MailIcon from "@mui/icons-material/Mail";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 
-interface MenuListProps {
-  drawerState: boolean;
-  children?: React.ReactNode;
-}
-
-const MenuList = (props: MenuListProps) => {
-  const { drawerState } = props;
-
+const MenuList = () => {
   const listButtonStyle = {
     minHeight: 48,
-    justifyContent: drawerState ? "initial" : "center",
+    justifyContent: "initial",
     px: 2.5,
   };
 
   const listIConStyle = {
     minWidth: 0,
-    mr: drawerState ? 3 : "auto",
+    mr: 3,
     justifyContent: "center",
   };
 
@@ -39,10 +32,7 @@ const MenuList = (props: MenuListProps) => {
               <ListItemIcon sx={listIConStyle}>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText
-                primary={text}
-                sx={{ opacity: drawerState ? 1 : 0 }}
-              />
+              <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -55,10 +45,7 @@ const MenuList = (props: MenuListProps) => {
               <ListItemIcon sx={listIConStyle}>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText
-                primary={text}
-                sx={{ opacity: drawerState ? 1 : 0 }}
-              />
+              <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
         ))}

@@ -5,14 +5,8 @@ import HomePage from "./views/HomePage/HomePage";
 import MenuList from "./components/MenuList/MenuList";
 
 function App() {
-  const [drawerState, setDrawerState] = useState(false);
-
   return (
-    <DrawerMenu
-      menuList={<MenuList drawerState={drawerState} />}
-      drawerState={drawerState}
-      setDrawerState={setDrawerState}
-    >
+    <DrawerMenu menuList={<MenuList />} pageTitle="Lunch Menu">
       <HomePage></HomePage>
     </DrawerMenu>
   );
