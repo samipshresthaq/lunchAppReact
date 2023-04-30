@@ -6,9 +6,9 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 import "./App.css";
 import DrawerMenu from "./components/DrawerMenu/DrawerMenu";
-import HomePage from "./views/HomePage/HomePage";
 import MenuList from "./components/MenuList/MenuList";
 import { ColorModeContext } from "./components/ColorMode/ColorMode";
+import LunchListPage from "./views/LunchListPage/LunchListPage";
 
 function App() {
   const theme = useTheme();
@@ -32,7 +32,7 @@ function App() {
       }
       pageTitle="Lunch Menu"
     >
-      <HomePage></HomePage>
+      <LunchListPage></LunchListPage>
     </DrawerMenu>
   );
 }
