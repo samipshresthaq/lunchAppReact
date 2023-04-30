@@ -1,10 +1,9 @@
 import { createContext, useMemo, useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
 
 export const ColorModeContext = createContext({
-  toggleColorMode: () => {
-    console.log("Here");
-  },
+  toggleColorMode: () => {},
 });
 
 interface ColorModeProps {
@@ -12,7 +11,11 @@ interface ColorModeProps {
 }
 
 export default function ColorMode(props: ColorModeProps) {
-  const [mode, setMode] = useState<"light" | "dark">("light");
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+  const [mode, setMode] = useState<"light" | "dark">(
+    prefersDarkMode ? "dark" : "light"
+  );
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
