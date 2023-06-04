@@ -1,3 +1,6 @@
+import { Box } from "@mui/material";
+import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+
 import LunchList from "../../components/LunchList/LunchList";
 
 const LunchListPage = () => {
@@ -8,9 +11,11 @@ const LunchListPage = () => {
   };
 
   return (
-    <>
-      <LunchList items={items} heading="Lunch Menu" onSelected={onSelected} />
-    </>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid2 container spacing={2}>
+        <LunchList items={items} onSelected={onSelected} />
+      </Grid2>
+    </Box>
   );
 };
 
