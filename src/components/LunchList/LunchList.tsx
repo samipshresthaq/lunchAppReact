@@ -1,13 +1,11 @@
-import { useState } from "react";
 import LunchCard from "../CardComponent/LunchCard";
 
 interface LunchProps {
-  heading: string;
   items: Array<string>;
   onSelected: (item: string) => void;
 }
 
-export default function LunchList({ items, heading, onSelected }: LunchProps) {
+export default function LunchList({ items }: LunchProps) {
   const getItems = () => {
     if (items.length === 0) {
       return <p>No items found</p>;
@@ -35,10 +33,5 @@ export default function LunchList({ items, heading, onSelected }: LunchProps) {
     );
   };
 
-  return (
-    <>
-      <h1>{heading}</h1>
-      {getItems()}
-    </>
-  );
+  return getItems();
 }

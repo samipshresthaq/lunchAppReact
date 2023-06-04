@@ -16,7 +16,7 @@ interface LunchCardProps {
   children: React.ReactNode;
 }
 
-const cardMaxWidth = 500;
+const cardMaxWidth = 240;
 
 const LunchCard = () => {
   return (
