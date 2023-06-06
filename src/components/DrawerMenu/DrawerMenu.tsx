@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Toolbar, Typography, styled } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import RamenDiningIcon from "@mui/icons-material/RamenDining";
+import { RamenDining } from "@mui/icons-material";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -61,9 +61,7 @@ const DrawerMenu = (props: DrawerMenuProps) => {
       </AppBar>
       <Drawer variant="permanent">
         <Toolbar>
-          <RamenDiningIcon
-            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-          />
+          <RamenDining sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap

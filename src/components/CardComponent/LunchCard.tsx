@@ -8,9 +8,7 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import AddIcon from "@mui/icons-material/Add";
+import { Add, Share, Favorite } from "@mui/icons-material";
 
 interface LunchCardProps {
   children: React.ReactNode;
@@ -36,17 +34,13 @@ const LunchCard = () => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <Favorite />
         </IconButton>
         <IconButton aria-label="share">
-          <ShareIcon />
+          <Share />
         </IconButton>
 
-        <Button
-          sx={{ marginLeft: "auto" }}
-          startIcon={<AddIcon />}
-          size="medium"
-        >
+        <Button sx={{ marginLeft: "auto" }} startIcon={<Add />} size="medium">
           Add Item
         </Button>
       </CardActions>

@@ -1,8 +1,7 @@
 import { useContext } from "react";
 import { useTheme } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { Brightness4, Brightness7 } from "@mui/icons-material";
 
 import "./App.css";
 import DrawerMenu from "./components/DrawerMenu/DrawerMenu";
@@ -23,11 +22,7 @@ function App() {
           onClick={colorMode.toggleColorMode}
           color="inherit"
         >
-          {theme.palette.mode === "dark" ? (
-            <Brightness7Icon />
-          ) : (
-            <Brightness4Icon />
-          )}
+          {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
         </IconButton>
       }
       pageTitle="Lunch Menu"
