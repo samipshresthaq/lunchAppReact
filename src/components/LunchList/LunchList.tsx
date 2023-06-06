@@ -1,4 +1,7 @@
+import Grid from "@mui/material/Unstable_Grid2";
+
 import LunchCard from "../CardComponent/LunchCard";
+import { Fragment } from "react";
 
 interface LunchProps {
   items: Array<string>;
@@ -11,9 +14,13 @@ export default function LunchList({ items }: LunchProps) {
       return <p>No items found</p>;
     }
     return (
-      <>
+      <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2 }}>
         {items.map((item, index) => (
-          <LunchCard></LunchCard>
+          <Fragment key={item}>
+            <Grid xs={12} sm={6} md={4} lg={3}>
+              <LunchCard></LunchCard>
+            </Grid>
+          </Fragment>
           // <li
           //   className={
           //     index === selectedIndex
@@ -29,7 +36,7 @@ export default function LunchList({ items }: LunchProps) {
           //   {item}
           // </li>
         ))}
-      </>
+      </Grid>
     );
   };
 

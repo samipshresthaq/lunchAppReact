@@ -18,7 +18,14 @@ const cardMaxWidth = 240;
 
 const LunchCard = () => {
   return (
-    <Card sx={{ maxWidth: cardMaxWidth }}>
+    <Card
+      sx={{
+        maxWidth: {
+          xs: "100%",
+          md: cardMaxWidth,
+        },
+      }}
+    >
       <CardMedia
         component="img"
         height="194"
