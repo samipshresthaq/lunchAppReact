@@ -4,10 +4,11 @@ import IconButton from "@mui/material/IconButton";
 import { Brightness4, Brightness7 } from "@mui/icons-material";
 
 import "./App.css";
-import DrawerMenu from "./components/DrawerMenu/DrawerMenu";
-import MenuList from "./components/MenuList/MenuList";
 import { ColorModeContext } from "./components/ColorMode/ColorMode";
+
+import DrawerMenu from "./components/DrawerMenu/DrawerMenu";
 import LunchListPage from "./views/LunchListPage/LunchListPage";
+import NavMenuList from "./components/MenuList/NavMenuList";
 
 function App() {
   const theme = useTheme();
@@ -15,7 +16,7 @@ function App() {
 
   return (
     <DrawerMenu
-      menuList={<MenuList />}
+      menuList={<NavMenuList />}
       themeIcon={
         <IconButton
           sx={{ ml: 1 }}

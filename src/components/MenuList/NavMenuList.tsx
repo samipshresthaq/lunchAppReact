@@ -10,7 +10,7 @@ import {
 import MailIcon from "@mui/icons-material/Mail";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 
-const MenuList = () => {
+const NavMenuList = () => {
   const listButtonStyle = {
     minHeight: 48,
     justifyContent: "initial",
@@ -54,4 +54,4 @@ const MenuList = () => {
   );
 };
 
-export default MenuList;
+export default NavMenuList;
